@@ -1,7 +1,16 @@
 # save this as app.py
 from flask import Flask
+from flask_SQLAlchemy import SQLAlchemy
+
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///db.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+
+
 
 @app.route("/")
 def start_page():
