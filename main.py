@@ -9,6 +9,9 @@ app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///db.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+class Message(db.Model): # database table
+    pass
+
 
 
 
