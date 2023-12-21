@@ -1,7 +1,7 @@
 # save this as app.py
 from flask import Flask
 from flask_SQLAlchemy import SQLAlchemy
-
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -13,6 +13,7 @@ class Message(db.Model): # database table
     id = db.Column(db.Integar, primary_key=True)
     user = db.Column(db.String(200), nullable=True)
     content = db.Column(db.String(1000), nullable=True)
+    created_at = db.Column(db.DateTime(), default= datetime.utcnow)
 
 
 
