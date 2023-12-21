@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
@@ -16,12 +16,16 @@ class Message(db.Model): # database table
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
 
 
-
-
-
-@app.route("/")
-def start_page():
-    return "Hello, World!"
+@app.route("/<name>", methods=['GET','POST'])
+def start_page(name):
+    if request.method == 'POST':
+        new_message = Message(
+            user = name,
+            content = request.form['content'],
+        )
+        db.session.add(new_message)
+        db.session.commit()
+    return render_template('base.html')
 
 
 if __name__ == "__main__":
@@ -29,3 +33,13 @@ if __name__ == "__main__":
         db.create_all()
 
     app.run(debug=True)
+
+
+
+
+# لحتى يشتغل لازم فعل البيئة لوهمية وارجع اخرج منها للملف الرأيسي 
+# messanger_app\src\venv>
+# .\Scripts\activate
+# cd -
+# messanger_app\src> 
+# messanger_app\src> strt coding
