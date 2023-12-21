@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Message(db.Model): # database table
-    pass
+    id = db.Column(db.Integar, primary_key=True)
 
 
 
