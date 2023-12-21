@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
 
 
 app = Flask(__name__)
@@ -25,6 +26,6 @@ def start_page():
 
 if __name__ == "__main__":
     with app.app_context():
-        db.create_all() # to creat database
+        db.create_all()
 
     app.run(debug=True)
