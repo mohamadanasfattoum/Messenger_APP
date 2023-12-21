@@ -16,6 +16,9 @@
             width: calc(100% - 160px);
 
         }
+
+
+
     </style>
     
     </head>
@@ -45,13 +48,13 @@
 
     <div class="container">
         {% for msg in msgs %}
-            <div class="d-flex {% if name == msg.user %} justify-content-end {% else %} justify-content-start {% endif %} mt-5">
-                <div class="card">
+            <div class="d-flex {% if name == msg.user %} justify-content-end {% else %} justify-content-start {% endif %} mt-3">
+                <div class="card rounded-top rounded-left">
                     <div class="card-header">
                         {{msg.user}}:
                     </div>
                     <div class="card-body">
-                        <div class=" mb-0">
+                        <div class=" mb-1">
                             <p>{{msg.content}}</p>
                         </div>
                     </div>
