@@ -11,6 +11,9 @@ db = SQLAlchemy(app)
 
 class Message(db.Model): # database table
     id = db.Column(db.Integar, primary_key=True)
+    user = db.Column(db.String(200), nullable=True)
+    content = db.Column(db.String(1000), nullable=True)
+
 
 
 
