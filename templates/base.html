@@ -44,24 +44,29 @@
     </nav>
 
     <div class="container">
-
-
-        <div class="d-flex justify-content-end mt-5">
-            <div class="card">
-                <div class="card-body">
-                    Hallo
+        {% for msg in msgs %}
+            <div class="d-flex justify-content-end mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        {{msg.user}}:
+                    </div>
+                    <div class="card-body">
+                        <div class=" mb-0">
+                            <p>{{msg.content}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-secondary" style="font-size: x-small;">
+                        {{msg.created_at.strftime('%T%n%D')}}
+                    </div>
                 </div>
             </div>
+        {% endfor %}
+        
 
-        </div>
-        <div class="d-flex justify-content-start mt-5">
-            <div class="card">
-                <div class="card-body">
-                    Hey, lange nichts gehört!
-                </div>
-            </div>
 
-        </div>
+            
+
+
 
         <form class="input-group mb-3 my-form" action="" method="POST">
             <input type="text" name = 'content' class="form-control" placeholder="Bitte gebe deine Nachricht an" >
