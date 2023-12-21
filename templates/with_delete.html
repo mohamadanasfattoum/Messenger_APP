@@ -8,24 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        .my-form{
-            
+        .my-form {
             bottom: 0px;
             left: 280px;
             width: calc(100% - 700px);
-
         }
-
-
-
     </style>
-    
-    </head>
+</head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Chat Messengee</a>
+            <a class="navbar-brand" href="#">Chat Messenger</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -34,10 +28,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 </ul>
-
             </div>
         </div>
-    </nav>
     </nav>
 
     <div class="container">
@@ -55,21 +47,24 @@
                     <div class="card-footer text-secondary" style="font-size: x-small;">
                         {{msg.created_at.strftime('%T%n%D')}}
                     </div>
+                    {% if name == msg.user %}
+                        <div class="card-footer">
+                            <form class="d-inline" action="{{ url_for('start_page', name=name) }}" method="GET">
+                                <input type="hidden" name="delete_id" value="{{ msg.id }}">
+                                <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
-        
 
-
-            
-
-
-        <form class="input-group mb-3 my-form" action="" method="POST">
-            <input type="text" name="content" class="form-control" placeholder="Bitte gebe deine Nachricht an">
-            <button class="btn btn-outline-secondary" type="submit">Senden</button>
+        <form class="input-group mb-3 my-form" action="{{ url_for('start_page', name=name) }}" method="POST">
+            <input type="text" name="content" class="form-control" placeholder="Please enter your message">
+            <button class="btn btn-outline-secondary" type="submit">Send</button>
+            <button class="btn btn-outline-danger" type="submit" name="delete_all" value="true">Delete All</button>
         </form>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
