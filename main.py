@@ -26,7 +26,7 @@ def start_page(name):
         db.session.add(new_message)
         db.session.commit()
     messages = Message.query.order_by(Message.created_at).all()
-    return render_template('base.html', msgs=messages)
+    return render_template('base.html', msgs=messages, name=name)
 
 
 if __name__ == "__main__":
